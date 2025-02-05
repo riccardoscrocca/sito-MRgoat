@@ -42,39 +42,39 @@ function App() {
           <div className="flex items-center justify-between h-16">
             <div className="flex-shrink-0">
               <img 
-                src={logoUrl}  // Usa il logo importato
+                src={logoUrl}
                 alt="GOAT Logo" 
-                className="h-12" 
+                className="h-8 md:h-12" 
               />
             </div>
             <div className="hidden md:block">
               <div className="ml-10 flex items-center space-x-8">
                 <button 
                   onClick={() => setIsModalOpen(true)}
-                  className="bg-yellow-500 hover:bg-yellow-400 text-black font-semibold py-2 px-4 rounded-full transition-all"
+                  className="bg-yellow-500 hover:bg-yellow-400 text-black font-semibold py-2 px-6 rounded-full transition-all text-base"
                 >
                   Mettiti in lista di attesa
                 </button>
               </div>
             </div>
             <div className="md:hidden">
-              <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-gray-300 hover:text-white">
+              <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-gray-300 hover:text-white p-2">
                 {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
               </button>
             </div>
           </div>
         </div>
         
-        {/* Mobile menu */}
+        {/* Mobile menu migliorato */}
         {isMenuOpen && (
-          <div className="md:hidden bg-black/95 border-b border-white/10">
-            <div className="px-2 pt-2 pb-3 space-y-1">
+          <div className="md:hidden bg-black/95 border-b border-white/10 animate-fadeIn">
+            <div className="px-4 pt-2 pb-3">
               <button 
                 onClick={() => {
                   setIsMenuOpen(false);
                   setIsModalOpen(true);
                 }}
-                className="block w-full mt-2 bg-yellow-500 hover:bg-yellow-400 text-black font-semibold py-2 px-4 rounded-full transition-all text-center"
+                className="w-full bg-yellow-500 hover:bg-yellow-400 text-black font-semibold py-3 px-4 rounded-full transition-all text-center"
               >
                 Mettiti in lista di attesa
               </button>
@@ -85,39 +85,39 @@ function App() {
 
       {/* Hero Section */}
       <div className="hero-bg min-h-screen flex items-center relative">
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 md:py-48">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-32">
           <div className="text-center">
             <img 
-              src={logoUrl}  // Usa il logo importato
+              src={logoUrl}
               alt="GOAT Logo" 
-              className="hero-logo w-40 h-40 mx-auto mb-8"
+              className="hero-logo w-24 h-24 md:w-40 md:h-40 mx-auto mb-6 md:mb-8"
             />
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-4">
-              <span className="gold-gradient">{import.meta.env.VITE_SITE_TITLE}</span>
+            <h1 className="text-3xl md:text-6xl lg:text-7xl font-extrabold mb-3 md:mb-4 px-2">
+              <span className="gold-gradient">G.O.A.T.</span>
             </h1>
-            <h2 className="text-2xl md:text-3xl font-medium mb-8 text-white">
-              {import.meta.env.VITE_SITE_SUBTITLE}
+            <h2 className="text-xl md:text-3xl font-medium mb-6 md:mb-8 text-white px-2">
+              Gold Opportunities Advanced Trading
             </h2>
             
-            <div className="mb-8">
+            <div className="mb-6 md:mb-8">
               <CountdownTimer targetDate="2025-03-01T00:00:00" />
             </div>
 
-            <div className="w-full max-w-lg mx-auto mb-16">
+            <div className="w-full max-w-sm md:max-w-lg mx-auto mb-8 md:mb-16 px-4">
               <button
                 onClick={() => setIsModalOpen(true)}
-                className="w-full bg-yellow-500 hover:bg-yellow-400 text-black text-2xl font-extrabold py-6 px-12 rounded-full inline-flex items-center justify-center transition-all transform hover:scale-105 hover:shadow-2xl border-4 border-yellow-400"
+                className="w-full bg-yellow-500 hover:bg-yellow-400 text-black text-lg md:text-2xl font-extrabold py-4 md:py-6 px-6 md:px-12 rounded-full inline-flex items-center justify-center transition-all transform hover:scale-105 hover:shadow-2xl border-2 md:border-4 border-yellow-400"
               >
                 Mettiti in lista di attesa
-                <ChevronRight className="ml-3 w-7 h-7" />
+                <ChevronRight className="ml-2 md:ml-3 w-5 h-5 md:w-7 md:h-7" />
               </button>
             </div>
 
-            <h3 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-8">
+            <h3 className="text-2xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-8 px-2">
               <span className="gold-gradient">{import.meta.env.VITE_HERO_TITLE}</span><br />
               {import.meta.env.VITE_HERO_SUBTITLE}
             </h3>
-            <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto">
+            <p className="text-lg md:text-2xl text-gray-300 mb-8 md:mb-12 max-w-3xl mx-auto px-4">
               {import.meta.env.VITE_HERO_DESCRIPTION}
             </p>
           </div>
@@ -125,10 +125,10 @@ function App() {
       </div>
 
       {/* Footer */}
-      <footer className="bg-black/80 py-8">
+      <footer className="bg-black/80 py-6 md:py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="text-gray-400 text-sm">
+            <div className="text-gray-400 text-sm text-center md:text-left">
               © {new Date().getFullYear()} G.O.A.T. Trading. Tutti i diritti riservati.
             </div>
             <div className="flex items-center gap-4">
