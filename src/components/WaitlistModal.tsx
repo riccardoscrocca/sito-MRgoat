@@ -10,6 +10,7 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({ isOpen, onClose })
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
     acceptPolicy: false
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -20,31 +21,37 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({ isOpen, onClose })
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('https://formsubmit.co/ajax/8c463b42035b3d4a75bcc3ca1af85aa6', {
+      const response = await fetch('https://hook.eu1.make.com/wycjrvafwvywbswmc6i3nc4r37od76go', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
-          _subject: 'Nuova iscrizione alla lista d\'attesa GOAT',
-          _template: 'table'
+          phone: formData.phone,
+          acceptPolicy: formData.acceptPolicy,
+          timestamp: new Date().toISOString(),
+          source: window.location.href
         })
       });
 
+      const responseData = await response.text();
+      console.log('Risposta:', responseData);
+
       if (response.ok) {
         setIsSubmitted(true);
-        setFormData({ name: '', email: '', acceptPolicy: false });
+        setFormData({ name: '', email: '', phone: '', acceptPolicy: false });
         setTimeout(() => {
           onClose();
           setIsSubmitted(false);
         }, 2000);
       } else {
-        throw new Error('Errore nell\'invio dell\'email');
+        console.error('Errore risposta:', responseData);
+        throw new Error(`Errore nell'invio dei dati: ${response.status}`);
       }
     } catch (error) {
+      console.error('Errore dettagliato:', error);
       alert('Si è verificato un errore. Per favore riprova più tardi.');
     } finally {
       setIsSubmitting(false);
@@ -71,7 +78,7 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({ isOpen, onClose })
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">
-                  Nome completo
+                  Nome completo *
                 </label>
                 <input
                   type="text"
@@ -85,7 +92,7 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({ isOpen, onClose })
               </div>
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">
-                  Email
+                  Email *
                 </label>
                 <input
                   type="email"
@@ -95,6 +102,20 @@ export const WaitlistModal: React.FC<WaitlistModalProps> = ({ isOpen, onClose })
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-400 focus:outline-none focus:border-yellow-500 transition-colors"
                   placeholder="Inserisci la tua email"
+                />
+              </div>
+              <div>
+                <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-1">
+                  Telefono *
+                </label>
+                <input
+                  type="tel"
+                  id="phone"
+                  required
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-400 focus:outline-none focus:border-yellow-500 transition-colors"
+                  placeholder="Inserisci il tuo numero di telefono"
                 />
               </div>
               <div className="flex items-start gap-2">
