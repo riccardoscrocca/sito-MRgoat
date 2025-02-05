@@ -4,7 +4,7 @@ import { StatNumber } from './components/StatNumber';
 import { CountdownTimer } from './components/CountdownTimer';
 import { CookieConsent } from './components/CookieConsent';
 import { WaitlistModal } from './components/WaitlistModal';
-import logoUrl from '../assets/logo.png';  // Assicurati che il percorso sia corretto
+import logoUrl from './assets/logo.png';  // Nota: ./assets invece di ../assets
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
