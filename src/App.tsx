@@ -4,6 +4,7 @@ import { StatNumber } from './components/StatNumber';
 import { CountdownTimer } from './components/CountdownTimer';
 import { CookieConsent } from './components/CookieConsent';
 import { WaitlistModal } from './components/WaitlistModal';
+import logoUrl from '../assets/logo.png';  // Assicurati che il percorso sia corretto
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -41,7 +42,7 @@ function App() {
           <div className="flex items-center justify-between h-16">
             <div className="flex-shrink-0">
               <img 
-                src={import.meta.env.VITE_LOGO_URL} 
+                src={logoUrl}  // Usa il logo importato
                 alt="GOAT Logo" 
                 className="h-12" 
               />
@@ -87,7 +88,7 @@ function App() {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 md:py-48">
           <div className="text-center">
             <img 
-              src={import.meta.env.VITE_LOGO_URL}
+              src={logoUrl}  // Usa il logo importato
               alt="GOAT Logo" 
               className="hero-logo w-40 h-40 mx-auto mb-8"
             />
