@@ -5,6 +5,7 @@ import { CountdownTimer } from './components/CountdownTimer';
 import { CookieConsent } from './components/CookieConsent';
 import { WaitlistModal } from './components/WaitlistModal';
 import logoUrl from './assets/logo.png';  // Nota: ./assets invece di ../assets
+import bgImage from './assets/hero-bg.jpg';  // o .png
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -84,7 +85,18 @@ function App() {
       </nav>
 
       {/* Hero Section */}
-      <div className="hero-bg min-h-screen flex items-center relative">
+      <div 
+        className="hero-bg min-h-screen flex items-center relative"
+        style={{
+          backgroundImage: `url(${bgImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
+        }}
+      >
+        {/* Overlay scuro */}
+        <div className="absolute inset-0 bg-black/70"></div>
+        
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-32">
           <div className="text-center">
             <img 
