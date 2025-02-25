@@ -112,7 +112,7 @@ function App() {
             </h2>
             
             <div className="mb-6 md:mb-8">
-              <CountdownTimer targetDate="2025-03-01T00:00:00" />
+              <CountdownTimer targetDate="2025-03-21T00:00:00" />
             </div>
 
             <div className="w-full max-w-sm md:max-w-lg mx-auto mb-8 md:mb-16 px-4">
